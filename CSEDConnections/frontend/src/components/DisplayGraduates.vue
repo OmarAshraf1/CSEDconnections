@@ -1,21 +1,20 @@
 <template>
  <div id="container"> 
    
-    
-    
-     <h1 >Products</h1> 
+     <h1 >Graduates</h1> 
      
     <div class="category">
-    <div id="categorycontainer" v-for="graduate in graduates" :key="graduate.graduatename">
-      <img id="img" :src="graduate.imgpath"/>
+    <div id="categorycontainer" v-for="graduate in graduates" :key="graduate.name">
+      <img id="img" :src="graduate.img"/>
       <br>
-       <a id="a2"  >{{graduate.graduatename}}</a>
+       <a id="a2"  >{{graduate.name}}</a>
         <br>
-        <a id="a1">${{graduate.name}}</a>
+        <a id="a1">{{graduate.email}}</a>
         <br>
-        <a id="a1">${{graduate.company}}</a>
+        <a id="a1">{{graduate.company}}</a>
+        <br>
+        <a id="a1">{{graduate.location}}</a>
         
-   
     </div>  
     </div>
   </div>
@@ -27,9 +26,7 @@ export default {
    data() {
     return {
      graduates:[],
-      msg:'',
-      productname: '',
-      tempproducts : []
+     name: '',
       
     }
   },
@@ -41,16 +38,17 @@ export default {
       //when the page loads we call the api 
       //to get graduates data retrieved from database
       
-        axios.post("http://localhost:8085/get_graduates")
-        .then(response =>{ 
-         if(response.data.length>0){
-              for (var i = 0; i < response.data.length; i++){
-                  var obj = response.data[i]
-                  this.products.push(obj)
-                } 
-                
-         }
-        });  
+        axios.post('http://localhost:8085/get_graduates',{
+              
+            })
+            .then(Response =>  {
+              for (var i = 0; i < Response.data.length; i++){
+                var obj = Response.data[i]
+                this.graduates.push(obj)
+              }
+            
+            
+          });
   }
 }
 </script>

@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-       <span id="check" >{{check}}</span> 
 
     <div id="app0" class="signup">
     </div>
@@ -10,13 +9,8 @@
       <form id="signupformStudent">
 
         <div class="form-group">
-          <label for="user">First Name</label>
-          <input class="rectangle" type="text" v-model="firstname"  placeholder=" First Name" maxlength="15" required/>
-        </div>
-
-        <div class="form-group">
-          <label for="user">Last Name</label>
-          <input class="rectangle" type="text" v-model="lastname"  placeholder=" Last Name" maxlength="15" required/>
+          <label for="user">Name</label>
+          <input class="rectangle" type="text" v-model="name"  placeholder="Name" maxlength="30" required/>
         </div>
 
         <div class="form-group">
@@ -27,9 +21,9 @@
         <div class="form-group">
           <label for="user">Gender</label>
           <section>
-          <input type="radio" v-model="gender" value="Male" required> Male 
+          <input type="radio" v-model="gender" value="Male" > Male 
           <a-input-search style='padding-right: 200px'/>
-          <input type="radio" v-model="gender" value="Female" required> Female
+          <input type="radio" v-model="gender" value="Female" > Female
           </section>
         </div>
 
@@ -51,13 +45,13 @@
         <div class="form-group">
           <label for="user">Current Level</label>
           <section>
-          <input type="radio" v-model="level" value="1" required> Level 1
+          <input type="radio" v-model="level" value="1" > Level 1
           <a-input-search style='padding-right: 50px'/>
-          <input type="radio" v-model="level" value="2" required> Level 2
+          <input type="radio" v-model="level" value="2" > Level 2
           <a-input-search style='padding-right: 75px'/>
-          <input type="radio" v-model="level" value="3" required> Level 3
+          <input type="radio" v-model="level" value="3" > Level 3
           <a-input-search style='padding-right: 50px'/>
-          <input type="radio" v-model="level" value="4" required> Level 4
+          <input type="radio" v-model="level" value="4" > Level 4
           <a-input-search style='padding-right: 50px'/>
           </section>
         </div>    
@@ -92,7 +86,7 @@
         </div>
         
         <div class="form-group">
-        <a href="#1" @click=backSignUpStudent()>back --></a>
+        <a href="#1" @click=backSignUpStudent()>Back</a>
         </div>
 
       </form>
@@ -112,8 +106,7 @@ export default {
     return {
       information:[],
       
-      firstname: '',
-      lastname: '',
+      name: '',
       age: '',
       gender: '',
       phone:'',
@@ -153,21 +146,18 @@ export default {
     pass1word: function(value) {
       this.check_password_length(value);
       this.check_passwords_match();
-    },/*
-    pass2word: function(value) {
+    },
+    pass2word: function() {
       this.check_passwords_match();
-    }*/
+    }
   },
 
   methods: {
     account() {
-      var x = document.getElementById("insideAccount");
-      x.style.display = "block";
-      var y = document.getElementById("app");
-      y.style.display = "none"
+        this.$router.push('/');
     },
-    /*emailCheck(value) {
-      if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value)) {
+    emailCheck(value) {
+      if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(value)) {
         this.msg4 = true;
         this.msg5 = false;
         this.email1_msg = '';
@@ -179,7 +169,7 @@ export default {
         this.email1_msg = '';
         this.email2_msg = 'Invalid Email (example@example.example)';
       }
-    },*/
+    },
     check_password_length(value) {
       var n= value.length;
       if (n < 6 && n > 0) {
@@ -214,20 +204,25 @@ export default {
     },
     signUpAsStudent() {
       if(this.msg1 == true && this.msg4 == true) {
-        this.information = {firstname:this.firstname, lastname:this.lastname, age:this.age, gender:this.gender, phone:this.phone, profilePicture:this.profilePicture, about:this.about, level:this.level, expectedgraduationyear:this.expectedgraduationyear, email:this.email, pass1word:this.pass1word}
-        axios.post('http://localhost:8085/signup', {
-        body: this.information
-        })
-        .then(Response =>  {
-        this.check= Response.data;
-        if(this.check !== "This E-mail Is Already Taken") {
-          setTimeout(this.account, 3000);
-        }
-        });
+      axios.get('http://localhost:8085/api/signUp/student',{
+          params: {
+              name:this.name, age:this.age,
+              gender:this.gender, phone:this.phone, profilePicture:this.profilePicture,
+              about:this.about, expectedgraduationyear:this.expectedgraduationyear,
+              level: this.level, email:this.email, pass1word:this.pass1word
+              }        
+          }
+      ).then(Response=>{
+          const Data = Response.data;
+          if(Data !== "Error"){
+            this.check = "Congratulations! Sign In Now !"
+            setTimeout(this.account, 2000);          
+          }
+      });
       }
     },
     backSignUpStudent() {
-        this.$router.push('/Start');
+        this.$router.push('/');
     },
   },
 }

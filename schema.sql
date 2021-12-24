@@ -50,7 +50,7 @@ CREATE TABLE `graduate` (
   `gender` varchar(6) DEFAULT NULL,
   `phone` varchar(14) DEFAULT NULL,
   `password` varchar(30) NOT NULL,
-  `imageURL` varchar(100) DEFAULT NULL,
+  `imageURL` varchar(1000) DEFAULT NULL,
   `about` varchar(300) DEFAULT NULL,
   `grad_year` year DEFAULT NULL,
   PRIMARY KEY (`email`)
@@ -67,12 +67,11 @@ CREATE TABLE `student` (
   `gender` varchar(6) DEFAULT NULL,
   `phone` varchar(14) DEFAULT NULL,
   `password` varchar(30) NOT NULL,
-  `imageURL` varchar(100) DEFAULT NULL,
+  `imageURL` varchar(1000) DEFAULT NULL,
   `about` varchar(300) DEFAULT NULL,
   `current_level` int DEFAULT NULL,
   `expected_grad_year` varchar(4) DEFAULT NULL,
-  PRIMARY KEY (`email`),
-  UNIQUE KEY `phone_UNIQUE` (`phone`)
+  PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;

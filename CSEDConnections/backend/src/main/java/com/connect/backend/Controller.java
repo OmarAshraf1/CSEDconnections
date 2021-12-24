@@ -4,4 +4,5 @@ import java.util.ArrayList;
 
 public class Controller {
     ArrayList<Graduate> currappear;
+    
 }

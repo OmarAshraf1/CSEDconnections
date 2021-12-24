@@ -39,25 +39,10 @@ export default {
   name: 'Start',
     data() {
     return {
-      
     }
   },
 
   watch: {
-    email: function(value) {
-      this.emailCheck(value);
-      if(value == "") {
-        this.check = "";
-        this.msg5 = false;
-      }
-    },
-    pass1word: function(value) {
-      this.check_password_length(value);
-      this.check_passwords_match();
-    },/*
-    pass2word: function(value) {
-      this.check_passwords_match();
-    }*/
   },
 
   methods: {

@@ -4,13 +4,18 @@ import SignIn from '@/components/SignIn'
 import SignUpGraduate from '@/components/SignUpGraduate'
 import SignUpStudent from '@/components/SignUpStudent'
 import Start from '@/components/Start'
-
+import DisplayGraduates from '@/components/DisplayGraduates'
 
 Vue.use(Router)
 
 export default new Router({
     routes: [
 
+      {
+        path: '/DisplayGraduates',
+        name: 'DisplayGraduates',
+        component: DisplayGraduates
+      },
       {
         path: '/SignIn',
         name: 'SignIn',
@@ -27,7 +32,7 @@ export default new Router({
         component: SignUpStudent 
       },
       {
-        path: '/Start',
+        path: '/',
         name: 'Start',
         component: Start 
       },
