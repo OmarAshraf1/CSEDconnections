@@ -38,6 +38,7 @@ export default {
       //when the page loads we call the api 
       //to get graduates data retrieved from database
       
+<<<<<<< Updated upstream
         axios.post('http://localhost:8085/get_graduates',{
               
             })
@@ -49,6 +50,20 @@ export default {
             
             
           });
+=======
+        axios.post("http://localhost:8085/get_graduates")
+        .then(response =>{ 
+          
+         if(response.data.length>0){
+           /*
+              for (var i = 0; i < response.data.length; i++){
+                  var obj = response.data[i]
+                  this.graduates.push(obj)
+                } 
+             */   
+         }
+        });  
+>>>>>>> Stashed changes
   }
 }
 </script>
@@ -60,14 +75,13 @@ export default {
 }
 #img{
     object-fit: cover;
-      object-fit: fill;
+    object-fit: fill;
     cursor: pointer;
-    height: 250px;
-    width: 450px;
+    height: 275px;
+    width: 250px;
    
 }
 #categorycontainer{
- 
     border: 1.7px;
     border-style: solid;
 }
@@ -79,17 +93,21 @@ export default {
     grid-template-columns: 1fr 1fr 1fr;
    
 }
+<<<<<<< Updated upstream
 #container{
-    background-color: darkkhaki;
+   
 }
+=======
+
+>>>>>>> Stashed changes
 #a2{
     font-size: 30px; 
-    color:rgb(37, 115, 192);
+    color:rgb(0, 82, 163);
     cursor: pointer;   
 }
 #a1{
     font-size: 22px; 
-    color: rgb(227, 236, 248) ;
+    color: rgba(227, 236, 248, 0.404) ;
       
 }
 #h1{
@@ -107,7 +125,7 @@ export default {
 .input{
     width: 35%;
     height: 25px;
-    border:2px solid cornflowerblue;
+    border:2px solid rgb(50, 73, 117);
     border-radius: 6px;
 
 }
